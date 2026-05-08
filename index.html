@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Leonardo Malannino — School Projects</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-inner">
+			<div class="brand">
+				<h1 class="name">Leonardo Malannino</h1>
+				<p class="tag">Student Portfolio — School Projects</p>
+			</div>
+			<nav class="nav">
+				<a href="#projects">Projects</a>
+				<a href="#about">About</a>
+				<a href="#contact">Contact</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container hero-inner">
+				<div>
+					<h2 class="hero-title">Building practical projects while learning.</h2>
+					<p class="hero-desc">A selection of my school projects showcasing web development, algorithms, and creative coding.</p>
+					<p><a class="cta" href="#projects">See projects</a></p>
+				</div>
+				<div class="hero-visual" aria-hidden="true"></div>
+			</div>
+		</section>
+
+		<section id="projects" class="projects container">
+			<h3 class="section-title">Projects</h3>
+			<div class="grid">
+				<article class="card">
+					<div class="card-media" style="--bg: linear-gradient(135deg,#6dd3ff 0%,#7b6bff 100%)">
+						<div class="media-label">Library</div>
+					</div>
+					<div class="card-body">
+						<h4>Library Management System</h4>
+						<p>A simple web application for managing a library's collection of books, including features for searching, adding, removing, and lending books.</p>
+						<div class="card-links">
+							<a href="/projects/Library/README.md">README</a>
+							<a href="/projects/Library/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
+						</div>
+					</div>
+				</article>
+
+				<article class="card">
+					<div class="card-media" style="--bg: linear-gradient(135deg,#ffd36d 0%,#ff7b6b 100%)">
+						<div class="media-label">Clients</div>
+					</div>
+					<div class="card-body">
+						<h4>Clients application</h4>
+						<p>A simple web application for managing client information and interactions.</p>
+						<div class="card-links">
+							<a href="/projects/Clients/README.md">README</a>
+							<a href="/projects/Clients/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
+						</div>
+					</div>
+				</article>
+
+				<article class="card">
+					<div class="card-media" style="--bg: linear-gradient(135deg,#7bffb5 0%,#3fb8ff 100%)">
+						<div class="media-label">Auth</div>
+					</div>
+					<div class="card-body">
+						<h4>Authentication System</h4>
+						<p>A secure PHP-based authentication system with user registration, login, and role-based access control.</p>
+						<div class="card-links">
+							<a href="/projects/Auth/README.md">README</a>
+							<a href="/projects/Auth/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<section id="about" class="about container">
+			<h3 class="section-title">About</h3>
+			<p>I'm a student learning web development and computer science. I enjoy building small apps that solve real problems and make learning fun.</p>
+		</section>
+
+		<section id="contact" class="contact container">
+			<h3 class="section-title">Contact</h3>
+			<p>Want to know more about a project or collaborate? Email me at <a href="mailto:leonardo@example.com">leonardo@example.com</a>.</p>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© <span id="year"></span> Leonardo Malannino — Built with curiosity.</p>
+			<p class="small-links"><a href="https://github.com/malannino-leonardo" target="_blank">GitHub</a> · <!-- <a href="https://linkedin.com/in/leonardomalannino" target="_blank">LinkedIn</a> --></p>
+		</div>
+	</footer>
+
+	<script>
+		document.getElementById('year').textContent = new Date().getFullYear();
+	</script>
+</body>
+</html>

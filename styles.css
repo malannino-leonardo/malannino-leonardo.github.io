@@ -1,0 +1,74 @@
+:root{
+	--bg:#0f1724;
+	--card:#0b1220;
+	--muted:#9aa4b2;
+	--accent:#7b6bff;
+	--glass: rgba(255,255,255,0.04);
+	--radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: linear-gradient(180deg,#071021 0%, #071827 100%);
+	color:#e6eef8;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+.site-header{backdrop-filter: blur(6px);background:transparent;position:sticky;top:0;z-index:40}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.name{margin:0;font-size:1.1rem;letter-spacing:0.4px}
+.tag{margin:0;color:var(--muted);font-size:0.85rem}
+.nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+.nav a:hover{color:var(--accent)}
+
+.hero{padding:64px 0}
+.hero-inner{display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:center}
+.hero-title{font-size:2rem;margin:0 0 10px}
+.hero-desc{color:var(--muted);margin:0 0 16px}
+.cta{display:inline-block;background:var(--accent);color:#08101a;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+.hero-visual{height:220px;border-radius:16px;background:linear-gradient(135deg,#123 0%, #456 100%);box-shadow:0 10px 30px rgba(11,17,30,0.6)}
+
+.section-title{margin:0 0 18px;font-size:1.2rem}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);overflow:hidden;box-shadow:0 6px 20px rgba(2,6,23,0.6);transition:transform .28s ease, box-shadow .28s ease}
+.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
+.card-media{height:140px;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px;color:#062129}
+.card-media{background:var(--bg);background:var(--bg);background:var(--bg)}
+.card-media{background:var(--bg)}
+.media-label{background:rgba(255,255,255,0.12);padding:6px 10px;border-radius:999px;color:white;font-weight:700;font-size:0.8rem}
+.card-body{padding:16px}
+.card-body h4{margin:0 0 8px}
+.card-body p{margin:0;color:var(--muted);font-size:0.95rem}
+.card-links{margin-top:12px}
+.card-links a{color:var(--accent);text-decoration:none;margin-right:10px;font-weight:600}
+
+.about,.contact{padding:36px 0}
+
+.site-footer{border-top:1px solid rgba(255,255,255,0.03);padding:18px 0;margin-top:40px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:0.9rem}
+.small-links a{color:var(--muted);text-decoration:none;margin-left:10px}
+
+@media (max-width:900px){
+	.grid{grid-template-columns:repeat(2,1fr)}
+	.hero-inner{grid-template-columns:1fr 260px}
+}
+@media (max-width:640px){
+	.grid{grid-template-columns:1fr}
+	.hero-inner{grid-template-columns:1fr}
+	.hero-visual{height:160px}
+	.header-inner{padding:12px 0}
+	.nav{display:none}
+}
+
+/* utility */
+.small{font-size:0.85rem;color:var(--muted)}
+
+/* Use inline style --bg on .card-media to show gradients per-card */
+.card-media{background:var(--bg);}
