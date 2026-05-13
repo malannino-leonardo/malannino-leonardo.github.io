@@ -5,15 +5,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Leonardo Malannino — School Projects</title>
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/atom-one-light.min.css" id="hljs-theme">
 	<link rel="stylesheet" href="styles.css">
+	<script>
+		// Switch highlight.js theme based on dark mode preference
+		const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+		function updateHighlightTheme() {
+			const theme = prefersLight.matches ? 'atom-one-light' : 'atom-one-dark';
+			document.getElementById('hljs-theme').href = `https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/${theme}.min.css`;
+		}
+		updateHighlightTheme();
+		prefersLight.addEventListener('change', updateHighlightTheme);
+	</script>
 </head>
 <body>
 	<header class="site-header">
 		<div class="container header-inner">
 			<div class="brand">
 				<h1 class="name">Leonardo Malannino</h1>
-				<p class="tag">Student Portfolio — School Projects</p>
+				<p class="tag">Portfolio — School Projects</p>
 			</div>
 			<nav class="nav">
 				<a href="#projects">Projects</a>
@@ -26,12 +37,24 @@
 	<main>
 		<section class="hero">
 			<div class="container hero-inner">
-				<div>
+				<div class="hero-content">
 					<h2 class="hero-title">Building practical projects while learning.</h2>
 					<p class="hero-desc">A selection of my school projects showcasing web development, algorithms, and creative coding.</p>
-					<p><a class="cta" href="#projects">See projects</a></p>
+					<p><a class="cta" href="#projects">Explore projects</a></p>
 				</div>
-				<div class="hero-visual" aria-hidden="true" href="/projects/Clients/media/clients-dashboard.png"></div>
+				<div class="carousel-container">
+					<div class="carousel">
+						<div class="carousel-slide"><img src="projects/Clients/media/clients-dashboard.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/Clients/media/login.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/Crud/media/main_table.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/Crud/media/update.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/Auth/media/login.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/Auth/media/sign-up.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/CRF/media/main.png" alt="Project"></div>
+						<div class="carousel-slide"><img src="projects/CRF/media/input.png" alt="Project"></div>
+					</div>
+					<div class="carousel-dots"></div>
+				</div>
 			</div>
 		</section>
 
@@ -46,8 +69,8 @@
 						<h4>Library Management System</h4>
 						<p>A simple web application for managing a library's collection of books, including features for searching, adding, removing, and lending books.</p>
 						<div class="card-links">
-							<a href="/projects/Library/README.md">README</a>
-							<a href="/projects/Library/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
+						<a href="#" class="doc-link" data-doc="projects/Library/README.md">README</a>
+						<a href="#" class="doc-link" data-doc="projects/Library/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
 						</div>
 					</div>
 				</article>
@@ -60,8 +83,8 @@
 						<h4>Clients application</h4>
 						<p>A simple web application for managing client information and interactions.</p>
 						<div class="card-links">
-							<a href="/projects/Clients/README.md">README</a>
-							<a href="/projects/Clients/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
+						<a href="#" class="doc-link" data-doc="projects/Clients/README.md">README</a>
+						<a href="#" class="doc-link" data-doc="projects/Clients/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
 						</div>
 					</div>
 				</article>
@@ -74,8 +97,8 @@
 						<h4>Authentication System</h4>
 						<p>A secure PHP-based authentication system with user registration, login, and role-based access control.</p>
 						<div class="card-links">
-							<a href="/projects/Auth/README.md">README</a>
-							<a href="/projects/Auth/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
+						<a href="#" class="doc-link" data-doc="projects/Auth/README.md">README</a>
+						<a href="#" class="doc-link" data-doc="projects/Auth/TECHNICAL_REPORT.md">TECHNICAL_REPORT</a>
 						</div>
 					</div>
 				</article>
@@ -89,9 +112,23 @@
 
 		<section id="contact" class="contact container">
 			<h3 class="section-title">Contact</h3>
-			<p>Want to know more about a project or collaborate? Email me at <a href="mailto:leonardo@example.com">leonardo@example.com</a>.</p>
+			<p>Want to know more about a project or collaborate? Email me at <a href="mailto:leonardo.malannino@gmail.com">leonardo.malannino@gmail.com</a>.</p>
 		</section>
 	</main>
+
+	<!-- Modal for displaying documents -->
+	<div class="modal" id="docModal">
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 id="modalTitle">Document</h2>
+				<button class="modal-close" aria-label="Close modal">&times;</button>
+			</div>
+			<div class="modal-body" id="modalBody">
+				<div class="modal-loader">Loading...</div>
+			</div>
+		</div>
+	</div>
 
 	<footer class="site-footer">
 		<div class="container footer-inner">
@@ -100,8 +137,154 @@
 		</div>
 	</footer>
 
+	<script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/highlight.min.js"></script>
 	<script>
 		document.getElementById('year').textContent = new Date().getFullYear();
+		
+		// Carousel functionality
+		const carousel = document.querySelector('.carousel');
+		const slides = document.querySelectorAll('.carousel-slide');
+		const dotsContainer = document.querySelector('.carousel-dots');
+		let currentSlide = 0;
+		
+		// Create dots
+		slides.forEach((_, i) => {
+			const dot = document.createElement('button');
+			dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+			dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+			dot.addEventListener('click', () => goToSlide(i));
+			dotsContainer.appendChild(dot);
+		});
+		
+		const dots = document.querySelectorAll('.carousel-dot');
+		
+		function updateCarousel() {
+			carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+			dots.forEach((dot, i) => {
+				dot.classList.toggle('active', i === currentSlide);
+			});
+		}
+		
+		function goToSlide(n) {
+			currentSlide = n % slides.length;
+			updateCarousel();
+		}
+		
+		function nextSlide() {
+			currentSlide = (currentSlide + 1) % slides.length;
+			updateCarousel();
+		}
+		
+		// Auto-rotate carousel every 5 seconds
+		setInterval(nextSlide, 5000);
+
+		// Modal functionality
+		const modal = document.getElementById('docModal');
+		const modalOverlay = document.querySelector('.modal-overlay');
+		const modalClose = document.querySelector('.modal-close');
+		const docLinks = document.querySelectorAll('.doc-link');
+
+		// Configure marked with highlight.js
+		marked.setOptions({
+			breaks: true,
+			gfm: true,
+		});
+
+		// Custom renderer for better styling
+		const renderer = new marked.Renderer();
+		renderer.heading = ({ text, depth }) => {
+			if (!text) return '';
+			const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+			return `<h${depth} id="${id}" class="markdown-heading markdown-h${depth}">${text}</h${depth}>`;
+		};
+		renderer.codespan = (text) => {
+			if (!text) return '';
+			return `<code class="markdown-inline-code">${escapeHtml(text)}</code>`;
+		};
+		renderer.link = ({ href, text }) => {
+			if (!href || !text) return text || '';
+			return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="markdown-link">${text}</a>`;
+		};
+		renderer.code = ({ text, lang }) => {
+			if (!text) return '';
+			const language = lang || 'plaintext';
+			return `<pre class="markdown-code"><code class="language-${language}">${escapeHtml(text)}</code></pre>`;
+		};
+		renderer.blockquote = ({ text }) => {
+			if (!text) return '';
+			return `<blockquote class="markdown-blockquote">${text}</blockquote>`;
+		};
+		renderer.list = ({ items, ordered }) => {
+			if (!items || items.length === 0) return '';
+			const tag = ordered ? 'ol' : 'ul';
+			const html = items.map(item => `<li>${item?.text || ''}</li>`).join('');
+			return `<${tag} class="markdown-list">${html}</${tag}>`;
+		};
+
+		marked.setOptions({ renderer });
+
+		function escapeHtml(text) {
+			const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+			return text.replace(/[&<>"']/g, m => map[m]);
+		}
+
+		function openModal(filePath) {
+			const fileName = filePath.split('/').pop();
+			document.getElementById('modalTitle').textContent = fileName;
+			document.getElementById('modalBody').innerHTML = '<div class="modal-loader">Loading...</div>';
+			modal.classList.add('open');
+			document.body.style.overflow = 'hidden';
+
+			const resolvedPath = new URL(filePath, window.location.href).toString();
+
+			fetch(resolvedPath)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`HTTP ${response.status} while loading ${fileName}`);
+					}
+					return response.text();
+				})
+				.then(markdown => {
+					const html = marked.parse(markdown);
+					document.getElementById('modalBody').innerHTML = `<div class="markdown-content">${html}</div>`;
+					// Highlight code blocks
+					setTimeout(() => {
+						document.querySelectorAll('.markdown-code code').forEach((block) => {
+							hljs.highlightElement(block);
+						});
+					}, 0);
+				})
+				.catch(error => {
+					const isFileProtocol = window.location.protocol === 'file:';
+					const help = isFileProtocol
+						? 'Open this site through a local web server (for example VS Code Live Server) so markdown files can be fetched.'
+						: '';
+					document.getElementById('modalBody').innerHTML = `<p class="modal-error">Error loading document: ${error.message}${help ? `<br><br>${help}` : ''}</p>`;
+				});
+		}
+
+		function closeModal() {
+			modal.classList.remove('open');
+			document.body.style.overflow = '';
+		}
+
+		// Event listeners
+		docLinks.forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const docPath = link.getAttribute('data-doc');
+				openModal(docPath);
+			});
+		});
+
+		modalClose.addEventListener('click', closeModal);
+		modalOverlay.addEventListener('click', closeModal);
+
+		// Close on Escape key
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') closeModal();
+		});
 	</script>
 </body>
 </html>
